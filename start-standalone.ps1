@@ -74,12 +74,44 @@ try {
 
 Write-Host ""
 
+# Check for arguments
+$lowResource = $false
+$showLogs = $false
+
+foreach ($arg in $args) {
+    if ($arg -eq "--low-resources" -or $arg -eq "-lr") {
+        $lowResource = $true
+    }
+    if ($arg -eq "--verbose" -or $arg -eq "-v") {
+        $showLogs = $true
+    }
+}
+
+if ($lowResource) {
+    Write-Host "🚀 Low-Resource Mode enabled!" -ForegroundColor Yellow
+    $serverArgs = "--low-resources"
+} else {
+    Write-Host "TIP: Use --low-resources (or -lr) to run with reduced CPU/RAM usage." -ForegroundColor Cyan
+    $serverArgs = ""
+}
+
+if ($showLogs) {
+    Write-Host "📄 Verbose Mode enabled! Showing server logs..." -ForegroundColor Magenta
+} else {
+    Write-Host "TIP: Use --verbose (or -v) to show server logs in this console." -ForegroundColor Cyan
+}
+
 # Start server in background
 Write-Host "Starting server..."
 $serverJob = Start-Job -ScriptBlock {
+    param($args_to_pass)
     Set-Location "$using:PWD\server"
-    node index.js
-} -Name "TestRemoteControl-Server"
+    if ($args_to_pass) {
+        node index.js $args_to_pass
+    } else {
+        node index.js
+    }
+} -Name "TestRemoteControl-Server" -ArgumentList $serverArgs
 
 Start-Sleep -Seconds 2
 
@@ -147,6 +179,12 @@ Write-Host ""
 
 # Simple monitoring
 while ($true) {
-    Start-Sleep -Seconds 10
-    Write-Host "Services are running... (Press Ctrl+C to stop)"
+    if ($showLogs) {
+        Receive-Job -Job $serverJob
+    }
+    Start-Sleep -Seconds 2
+    if (!$showLogs) {
+        Write-Host "Services are running... (Press Ctrl+C to stop, or use -v at startup to see logs)" -ForegroundColor Gray
+        Start-Sleep -Seconds 8
+    }
 }

@@ -33,7 +33,7 @@ class ConfigManager {
                 fps: 30,
                 fpsMin: 10,
                 fpsMax: 60,
-                quality: 70,
+                quality: 30,
                 qualityMin: 30,
                 qualityMax: 100,
 
@@ -45,7 +45,7 @@ class ConfigManager {
                 detectionInterval: 2000,
                 targetWindowTitles: "Cursor|Antigravity|Windsurf",
                 detectionMode: 'fixed', // 'dynamic' | 'fixed'
-                showDebugLines: true,
+                showDebugLines: false,
                 autoActivateWindow: true,
 
                 // Low-resource mode settings

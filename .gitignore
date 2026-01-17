@@ -4,3 +4,7 @@ node_modules/
 dist/
 build/
 *.log
+
+# App specific
+server/config.json
+client/dist/
