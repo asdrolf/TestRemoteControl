@@ -149,7 +149,7 @@ Write-Output "WORKER_READY"
 
             // Escape double quotes in pattern
             const escapedPattern = titlePattern.replace(/"/g, '`"');
-            this.proc.stdin.write(`Write-Output "${id}:$(Find-Window -Pattern '${escapedPattern}')"\\n`);
+            this.proc.stdin.write(`Write-Output "${id}:$(Find-Window -Pattern '${escapedPattern}')"\n`);
 
             // Timeout fallback
             setTimeout(() => {

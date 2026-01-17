@@ -174,8 +174,11 @@ io.on('connection', (socket) => {
             const cropTop = effectiveConfig.cropTop;
             const cropLeft = effectiveConfig.cropLeft;
 
-            const absoluteX = state.lastCaptureArea.x + pos.x + cropLeft;
-            const absoluteY = state.lastCaptureArea.y + pos.y + cropTop;
+            const isLowResource = configManager.isLowResourceMode();
+            const downscale = isLowResource ? configManager.getImageDownscale() : 1.0;
+
+            const absoluteX = state.lastCaptureArea.x + (pos.x / downscale) + cropLeft;
+            const absoluteY = state.lastCaptureArea.y + (pos.y / downscale) + cropTop;
 
             state.lastClickPos = { x: absoluteX, y: absoluteY, time: Date.now() };
 
@@ -241,14 +244,17 @@ io.on('connection', (socket) => {
         try {
             // If coords provided (touch scroll), verify focus and position
             if (data.x !== undefined && data.y !== undefined) {
+                const isLowResource = configManager.isLowResourceMode();
+                const downscale = isLowResource ? configManager.getImageDownscale() : 1.0;
+
                 const imgBuffer = await screenshot();
                 const mainImage = await Jimp.read(imgBuffer);
                 const scale = getDpiScale(mainImage.width, mainImage.height);
 
                 const cropTop = effectiveConfig.cropTop;
                 const cropLeft = effectiveConfig.cropLeft;
-                const absoluteX = state.lastCaptureArea.x + data.x + cropLeft;
-                const absoluteY = state.lastCaptureArea.y + data.y + cropTop;
+                const absoluteX = state.lastCaptureArea.x + (data.x / downscale) + cropLeft;
+                const absoluteY = state.lastCaptureArea.y + (data.y / downscale) + cropTop;
 
                 const logicalX = Math.round(absoluteX / scale.x);
                 const logicalY = Math.round(absoluteY / scale.y);

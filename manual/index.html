@@ -18,19 +18,22 @@
             <nav class="nav-links">
                 <a href="#setup">Configuración</a>
                 <a href="#features">Funciones</a>
+                <a href="#config-docs">Opciones</a>
                 <a href="https://github.com/vuestro-repo/TestRemoteControl" target="_blank">GitHub</a>
             </nav>
         </header>
 
         <section class="hero">
             <h1>Controla tu IDE<br>desde cualquier lugar.</h1>
-            <p>Compatible con <strong>Cursor</strong>, <strong>Antigravity</strong> y <strong>VSCode</strong>. Una
+            <p>Compatible con <strong>Cursor</strong>, <strong>Antigravity</strong>, <strong>Windsurf</strong> y
+                <strong>VSCode</strong>. Una
                 interfaz <strong>diseñada específicamente para móviles</strong> que ofrece control total y
-                automatización en la palma de tu mano.</p>
+                automatización en la palma de tu mano.
+            </p>
 
-            <!-- Placeholder para Hero Image -->
-            <div class="hero-image placeholder-box">
-                <div class="placeholder-text">Espacio para Captura Principal (Móvil)</div>
+            <div class="hero-image">
+                <img src="assets/tab-chat-overview.png" alt="Vista Principal Móvil"
+                    onerror="this.parentElement.innerHTML='<div class=placeholder-text>Captura Principal (tab-chat-overview.png)</div>'">
             </div>
         </section>
 
@@ -41,24 +44,30 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                     <h4>Instalar Extensión del IDE</h4>
-                    <p>Habilita el puente de comunicación instalando nuestra extensión oficial en tu IDE preferido
-                        (Cursor, Antigravity o VSCode). Permite la gestión remota de forma segura y eficiente.</p>
+                    <p>Habilita el puente de comunicación instalando nuestra extensión oficial en tu IDE preferido.
+                        Permite la gestión remota de forma segura y eficiente.</p>
                     <div class="command-block">
                         <code>cd vscode-extension<br># Instalar mediante .vsix o marketplace</code>
                     </div>
+                    <img class="doc-image" src="assets/extension-installation.png" alt="Instalación de Extensión"
+                        style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">
                 </div>
             </div>
 
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h4>Tema Visual Obligatorio</h4>
-                    <p>Para una experiencia óptima y profesional, configura el IDE con un <strong>Tema Oscuro de Alto
-                            Contraste</strong>. Esto garantiza la legibilidad y coherencia visual con la interfaz de
-                        control.</p>
+                    <h4>Tema Visual Obligatorio (OCR)</h4>
+                    <p>El sistema utiliza <strong>OCR (Reconocimiento Óptico de Caracteres)</strong> para detectar
+                        automáticamente las zonas del IDE (Chat, Terminal, etc.).</p>
+                    <p>Para que la detección sea precisa, es <strong>obligatorio</strong> configurar el tema
+                        <strong>Dark High Contrast</strong>.
+                    </p>
                     <div class="command-block">
                         <code>Configuración > Tema de color > Dark High Contrast</code>
                     </div>
+                    <img class="doc-image" src="assets/theme-configuration.png" alt="Configuración de Tema"
+                        style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">
                 </div>
             </div>
 
@@ -76,24 +85,65 @@
         </section>
 
         <section id="features">
-            <h2>Interfaz de Control</h2>
+            <h2>Funcionalidades Principales</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>Terminales y Chat</h3>
-                    <p>Control total sobre tus terminales integrados. Crea nuevas sesiones, envía comandos y gestiona el
-                        chat del IDE directamente desde tu móvil.</p>
-                    <div class="placeholder-box mini" style="margin-top: 1.5rem; height: 150px;">
-                        <div class="placeholder-text">Captura Terminal y Chat</div>
+                    <h3>💬 Acceso al Chat (IA)</h3>
+                    <p>Visualiza y desplázate por el historial del chat de tu IDE.</p>
+                    <div class="mobile-frame">
+                        <img src="assets/tab-chat-overview.png" alt="Acceso al Chat"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder-text>Captura Chat</div>'">
                     </div>
                 </div>
                 <div class="card">
-                    <h3>Control Remoto Visual</h3>
-                    <p>Visualiza tu escritorio globalmente o enfócate en aplicaciones específicas. Una experiencia de
-                        control remoto fluida y profesional.</p>
-                    <div class="placeholder-box mini" style="margin-top: 1.5rem; height: 150px;">
-                        <div class="placeholder-text">Captura Escritorio Remoto</div>
+                    <h3>⌨️ Terminal Remota</h3>
+                    <p>Gestiona todas tus terminales abiertas y envía comandos.</p>
+                    <div class="mobile-frame">
+                        <img src="assets/tab-console-active.png" alt="Terminal Activa"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder-text>Captura Terminal</div>'">
                     </div>
                 </div>
+                <div class="card">
+                    <h3>🖱️ Scroll Cómodo</h3>
+                    <p>Navegación nativa fluida:</p>
+                    <ul style="list-style: none; margin-top: 1rem; color: var(--text-dim);">
+                        <li style="margin-bottom: 0.5rem;"><strong>👆 2 Dedos:</strong> Scroll vertical rápido.</li>
+                        <li><strong>🔘 Botón FAB:</strong> Activa el scroll horizontal lateral.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌍 Vista Global</h3>
+                    <p>Visualiza el escritorio completo con el Modo Global.</p>
+                    <div class="mobile-frame">
+                        <img src="assets/feature-global-view.png" alt="Vista Escritorio"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder-text>Captura Global</div>'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="config-docs">
+            <h2>Opciones de Configuración</h2>
+            <div class="config-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="config-card"
+                    style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🚀 Rendimiento</h4>
+                    <p><strong>FPS:</strong> Ajusta la fluidez (30 sugerido).</p>
+                    <p><strong>Calidad:</strong> Compresión JPEG (70-80 sugerido).</p>
+                    <p><strong>Low Resource Mode:</strong> Optimización máxima para menor procesado.</p>
+                </div>
+                <div class="config-card"
+                    style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 Control y Detección</h4>
+                    <p><strong>Detection Interval:</strong> Cada cuánto tiempo busca ventanas (ms).</p>
+                    <p><strong>Target Titles:</strong> Regex para filtrar apps (Cursor|Windsurf).</p>
+                    <p><strong>Show Debug Lines:</strong> Muestra en pantalla qué está detectando el OCR.</p>
+                </div>
+            </div>
+            <div class="mobile-frame" style="max-width: 320px; margin-top: 2rem;">
+                <img src="assets/tab-settings-overview.png" alt="Panel de Settings"
+                    onerror="this.parentElement.innerHTML='<div class=placeholder-text>Captura Settings</div>'">
             </div>
         </section>
 
@@ -102,7 +152,7 @@
                 <a href="https://github.com/vuestro-repo/TestRemoteControl" target="_blank">GitHub Repository</a>
                 <a href="https://www.linkedin.com/in/apwapw/" target="_blank">LinkedIn Profile</a>
             </div>
-            <p class="copyright">&copy; 2026 TestRemoteControl Project. Diseñado para ofrecer control total.</p>
+            <p class="copyright">&copy; 2026 TestRemoteControl Project. Detección inteligente por OCR.</p>
         </footer>
     </div>
 </body>
