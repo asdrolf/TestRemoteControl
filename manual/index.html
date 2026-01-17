@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -16,145 +17,151 @@
         <header>
             <div class="logo">TestRemoteControl</div>
             <nav class="nav-links">
-                <a href="#setup">Configuración</a>
+                <a href="#setup">Configurar</a>
+                <a href="#beta-info">Requisitos</a>
                 <a href="#features">Funciones</a>
-                <a href="#config-docs">Opciones</a>
                 <a href="https://github.com/vuestro-repo/TestRemoteControl" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/apwapw/" target="_blank" class="nav-btn">LinkedIn</a>
             </nav>
         </header>
 
         <section class="hero">
-            <h1>Controla tu IDE<br>desde cualquier lugar.</h1>
-            <p>Compatible con <strong>Cursor</strong>, <strong>Antigravity</strong>, <strong>Windsurf</strong> y
-                <strong>VSCode</strong>. Una
-                interfaz <strong>diseñada específicamente para móviles</strong> que ofrece control total y
-                automatización en la palma de tu mano.
-            </p>
+            <h1>Controla tu IDE<br><span class="gradient-text">Sin Límites</span></h1>
+            <p>Compatible con <strong>Cursor</strong>, <strong>Antigravity</strong>, y <strong>VSCode</strong>.
+                Interfaz móvil nativa para automatización total.</p>
 
-            <div class="hero-image">
-                <img src="assets/tab-chat-overview.png" alt="Vista Principal Móvil"
-                    onerror="this.parentElement.innerHTML='<div class=placeholder-text>Captura Principal (tab-chat-overview.png)</div>'">
+            <div class="hero-visual">
+                <div class="hero-phone">
+                    <img src="assets/tab-chat-overview.png" alt="Vista Principal Móvil"
+                        onerror="this.parentElement.innerHTML='<div style=\'padding:2rem; color:white; text-align:center;\'>Preview App</div>'">
+                </div>
             </div>
         </section>
 
         <section id="setup">
-            <h2>Configuración del Entorno</h2>
+            <h2>Configuración <span class="highlight">Rápida</span></h2>
 
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <h4>Instalar Extensión del IDE</h4>
-                    <p>Habilita el puente de comunicación instalando nuestra extensión oficial en tu IDE preferido.
-                        Permite la gestión remota de forma segura y eficiente.</p>
+                    <h4>Instalar Extensión</h4>
+                    <p>Habilita el puente de comunicación instalando nuestra extensión oficial.</p>
                     <div class="command-block">
-                        <code>cd vscode-extension<br># Instalar mediante .vsix o marketplace</code>
+                        <code>cd vscode-extension<br># Instalar mediante .vsix</code>
                     </div>
-                    <img class="doc-image" src="assets/extension-installation.png" alt="Instalación de Extensión"
-                        style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">
                 </div>
             </div>
 
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h4>Tema Visual Obligatorio (OCR)</h4>
-                    <p>El sistema utiliza <strong>OCR (Reconocimiento Óptico de Caracteres)</strong> para detectar
-                        automáticamente las zonas del IDE (Chat, Terminal, etc.).</p>
-                    <p>Para que la detección sea precisa, es <strong>obligatorio</strong> configurar el tema
-                        <strong>Dark High Contrast</strong>.
-                    </p>
+                    <h4>Tema Visual (OCR)</h4>
+                    <p>Es <strong>obligatorio</strong> usar el tema de alto contraste para la detección.</p>
                     <div class="command-block">
-                        <code>Configuración > Tema de color > Dark High Contrast</code>
+                        <code>Configuración > Tema > Dark High Contrast</code>
                     </div>
-                    <img class="doc-image" src="assets/theme-configuration.png" alt="Configuración de Tema"
-                        style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">
                 </div>
             </div>
 
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h4>Arranque Standalone</h4>
-                    <p>Ejecuta el script unificado para iniciar tanto el servidor de control como la interfaz web en
-                        segundos.</p>
+                    <h4>Iniciar Servidor</h4>
+                    <p>Ejecuta el script unificado para arrancar.</p>
                     <div class="command-block">
-                        <code># Arranque normal<br>.\start-standalone.ps1<br><br># Modo bajo consumo (Recomendado para PCs poco potentes)<br>.\start-standalone.ps1 -lr<br><br># Ver logs del servidor en esta consola<br>.\start-standalone.ps1 -v</code>
+                        <code>.\start-standalone.ps1 -lr</code>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="features">
-            <h2>Funcionalidades Principales</h2>
+            <h2>Funcionalidades</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>💬 Acceso al Chat (IA)</h3>
-                    <p>Visualiza y desplázate por el historial del chat de tu IDE.</p>
-                    <div class="mobile-frame">
-                        <img src="assets/tab-chat-overview.png" alt="Acceso al Chat"
-                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder-text>Captura Chat</div>'">
+                    <h3>💬 Chat IA</h3>
+                    <p>Interactúa con tu asistente de código desde el sofá.</p>
+                    <div class="card-image-wrapper">
+                        <img src="assets/tab-chat-overview.png" alt="Chat" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="card">
-                    <h3>⌨️ Terminal Remota</h3>
-                    <p>Gestiona todas tus terminales abiertas y envía comandos.</p>
-                    <div class="mobile-frame">
-                        <img src="assets/tab-console-active.png" alt="Terminal Activa"
-                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder-text>Captura Terminal</div>'">
+                    <h3>⌨️ Terminal</h3>
+                    <p>Ejecuta comandos y monitorea procesos.</p>
+                    <div class="card-image-wrapper">
+                        <img src="assets/tab-console-active.png" alt="Terminal" onerror="this.style.display='none'">
                     </div>
                 </div>
                 <div class="card">
-                    <h3>🖱️ Scroll Cómodo</h3>
-                    <p>Navegación nativa fluida:</p>
-                    <ul style="list-style: none; margin-top: 1rem; color: var(--text-dim);">
-                        <li style="margin-bottom: 0.5rem;"><strong>👆 2 Dedos:</strong> Scroll vertical rápido.</li>
-                        <li><strong>🔘 Botón FAB:</strong> Activa el scroll horizontal lateral.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>🌍 Vista Global</h3>
-                    <p>Visualiza el escritorio completo con el Modo Global.</p>
-                    <div class="mobile-frame">
-                        <img src="assets/feature-global-view.png" alt="Vista Escritorio"
-                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=placeholder-text>Captura Global</div>'">
+                    <h3>🌍 Global View</h3>
+                    <p>Control total del escritorio remoto.</p>
+                    <div class="card-image-wrapper">
+                        <img src="assets/feature-global-view.png" alt="Global" onerror="this.style.display='none'">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="config-docs">
-            <h2>Opciones de Configuración</h2>
-            <div class="config-grid"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                <div class="config-card"
-                    style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🚀 Rendimiento</h4>
-                    <p><strong>FPS:</strong> Ajusta la fluidez (30 sugerido).</p>
-                    <p><strong>Calidad:</strong> Compresión JPEG (70-80 sugerido).</p>
-                    <p><strong>Low Resource Mode:</strong> Optimización máxima para menor procesado.</p>
+        <section id="beta-info">
+            <h2>⚠️ Beta & Requisitos</h2>
+
+            <div class="card" style="border-color: rgba(234, 179, 8, 0.3); background: rgba(234, 179, 8, 0.05);">
+                <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+                    <span style="font-size: 2rem;">🚧</span>
+                    <div>
+                        <h3 style="color: #facc15; margin-bottom: 0.5rem;">Software Experimental</h3>
+                        <p style="color: #f_ef_088;">Proyecto desarrollado en 48h para uso personal. Puede contener bugs
+                            y el código no está optimizado. Úsalo bajo tu propia responsabilidad.</p>
+                    </div>
                 </div>
-                <div class="config-card"
-                    style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: 1rem;">🎯 Control y Detección</h4>
-                    <p><strong>Detection Interval:</strong> Cada cuánto tiempo busca ventanas (ms).</p>
-                    <p><strong>Target Titles:</strong> Regex para filtrar apps (Cursor|Windsurf).</p>
-                    <p><strong>Show Debug Lines:</strong> Muestra en pantalla qué está detectando el OCR.</p>
+
+                <div
+                    style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+                    <h4
+                        style="color: var(--text-main); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="color: #ef4444;">🔴</span> REQUISITO CRÍTICO
+                    </h4>
+                    <ul style="list-style: none; color: var(--text-dim);">
+                        <li style="margin-bottom: 0.8rem;">1. <strong>Mantenlo Visible:</strong> La ventana del IDE debe
+                            estar abierta y visible en el escritorio.</li>
+                        <li style="margin-bottom: 0.8rem;">2. <strong>Instancia Única:</strong> Solo debe haber una
+                            ventana del IDE abierta.</li>
+                        <li>3. <strong>Paneles Estándar:</strong> Asegúrate de tener el Chat y la Terminal abiertos con
+                            proporciones normales (ver imagen).</li>
+                    </ul>
                 </div>
             </div>
-            <div class="mobile-frame" style="max-width: 320px; margin-top: 2rem;">
-                <img src="assets/tab-settings-overview.png" alt="Panel de Settings"
-                    onerror="this.parentElement.innerHTML='<div class=placeholder-text>Captura Settings</div>'">
+
+            <div class="mobile-frame"
+                style="max-width: 100%; border-radius: 12px; border-width: 2px; margin-top: 2rem;">
+                <img src="assets/ide-panels-setup.png" alt="Ejemplo de disposición de paneles"
+                    style="width: 100%; height: auto; display: block;">
             </div>
+            <p style="text-align: center; font-size: 0.85rem; color: var(--text-dim); margin-top: 0.5rem;">Ejemplo de
+                disposición correcta de paneles y zoom.</p>
         </section>
 
         <footer>
-            <div class="social-links">
-                <a href="https://github.com/vuestro-repo/TestRemoteControl" target="_blank">GitHub Repository</a>
-                <a href="https://www.linkedin.com/in/apwapw/" target="_blank">LinkedIn Profile</a>
+            <div class="footer-links">
+                <a href="https://github.com/vuestro-repo/TestRemoteControl" target="_blank">GitHub</a>
+                <a href="#">Reportar Bug</a>
+                <a href="#">Comunidad</a>
             </div>
-            <p class="copyright">&copy; 2026 TestRemoteControl Project. Detección inteligente por OCR.</p>
+            <p class="copyright">&copy; 2026 TestRemoteControl Project.</p>
         </footer>
     </div>
+
+    <script>
+        // Simple scroll effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 
 </html>
