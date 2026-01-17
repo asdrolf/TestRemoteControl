@@ -1,0 +1,43 @@
+{
+    "name": "remote-control-bridge",
+    "displayName": "Remote Control Bridge",
+    "description": "Bridge for Remote IDE Control System",
+    "version": "0.0.7",
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "remote-control.connect",
+                "title": "Remote Control: Connect to Server"
+            }
+        ]
+    },
+    "scripts": {
+        "lint": "eslint .",
+        "pretest": "npm run lint",
+        "test": "node ./test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.80.0",
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "20.2.5",
+        "eslint": "^8.41.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.2.0",
+        "typescript": "^5.1.3",
+        "@vscode/test-electron": "^2.3.2"
+    },
+    "dependencies": {
+        "socket.io-client": "^4.7.2"
+    }
+}
