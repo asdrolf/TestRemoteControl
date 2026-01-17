@@ -37,15 +37,22 @@ class StreamEngine {
         if (this.streamInterval) clearInterval(this.streamInterval);
 
         const globalConfig = configManager.getGlobalConfig();
+        const lowResourceMode = configManager.isLowResourceMode();
         const clients = clientManager.getAllClients();
 
-        // Find max requested FPS
+        // In low-resource mode, use the reduced FPS
+        let baseFps = lowResourceMode ? configManager.getEffectiveFps() : globalConfig.fps;
+
+        // Find max requested FPS among clients (but cap at base if low-resource)
         const clientFps = clients.map(c => {
             const conf = clientManager.getEffectiveConfig(c.socketId);
-            return conf ? conf.fps : globalConfig.fps;
+            return conf ? conf.fps : baseFps;
         });
 
-        const targetFps = Math.max(globalConfig.fps, ...clientFps);
+        const targetFps = lowResourceMode
+            ? baseFps  // In low-resource mode, ignore client overrides
+            : Math.max(baseFps, ...clientFps);
+
         const intervalMs = 1000 / targetFps;
 
         if (this.isStreaming) {
@@ -217,7 +224,19 @@ class StreamEngine {
                     clientImage.crop({ x: cropLeft, y: cropTop, w: displayW, h: displayH });
                 }
 
-                const buffer = await clientImage.getBuffer("image/jpeg", { quality: effectiveConfig.quality });
+                // Determine quality - use low-resource quality if enabled
+                const lowResourceMode = configManager.isLowResourceMode();
+                const quality = lowResourceMode
+                    ? configManager.getEffectiveQuality()
+                    : effectiveConfig.quality;
+
+                // Optional downscale for low-resource mode
+                const downscale = configManager.getImageDownscale();
+                if (lowResourceMode && downscale < 1.0) {
+                    clientImage.scale(downscale);
+                }
+
+                const buffer = await clientImage.getBuffer("image/jpeg", { quality });
                 socket.volatile.emit('frame', buffer.toString('base64'));
             }
 

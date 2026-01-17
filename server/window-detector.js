@@ -1,13 +1,22 @@
 const { spawn } = require('child_process');
+const windowDetectorWorker = require('./lib/WindowDetectorWorker');
+const configManager = require('./configManager');
 
 /**
  * Finds a window matching the given title pattern and returns its bounds.
  * Uses PowerShell to interact with Windows API.
+ * In low-resource mode, uses persistent worker with caching.
  * 
  * @param {string} titlePattern Regex string to match window title (e.g. "Cursor|Antigravity")
  * @returns {Promise<{x: number, y: number, width: number, height: number} | null>}
  */
 function findWindowBounds(titlePattern) {
+    // Use persistent worker in low-resource mode
+    if (configManager.isLowResourceMode()) {
+        return windowDetectorWorker.findWindowBounds(titlePattern);
+    }
+
+    // Standard mode: spawn new PowerShell process
     return new Promise((resolve, reject) => {
         const script = `
 Add-Type -AssemblyName UIAutomationClient
@@ -342,10 +351,16 @@ exit 0
 
 /**
  * Finds window bounds by handle.
+ * In low-resource mode, uses persistent worker with caching.
  * @param {number|string} handle
  * @returns {Promise<{x: number, y: number, width: number, height: number} | null>}
  */
 function findWindowBoundsByHandle(handle) {
+    // Use persistent worker in low-resource mode
+    if (configManager.isLowResourceMode()) {
+        return windowDetectorWorker.findWindowBoundsByHandle(handle);
+    }
+
     return new Promise((resolve) => {
         const script = `
 Add-Type -AssemblyName UIAutomationClient

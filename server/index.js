@@ -9,6 +9,14 @@ const cors = require('cors');
 
 const config = require('./config');
 const configManager = config.getConfigManager();
+
+// CLI Argument for Low-Resource Mode
+const lowResourceArg = process.argv.includes('--low-resources') || process.argv.includes('-lr');
+if (lowResourceArg) {
+    configManager.updateGlobalConfig({ lowResourceMode: true });
+    console.log('\x1b[33m%s\x1b[0m', '🚀 Low-Resource Mode activated via CLI argument');
+}
+
 const { getActiveFocus, getOpenWindows, ensureWindowActive, ensureWindowActiveByHandle } = require('./window-detector');
 const terminalManager = require('./terminalManager');
 
@@ -401,7 +409,7 @@ io.on('connection', (socket) => {
         }
 
         // Simple global settings
-        ['fps', 'quality', 'scrollSensitivity', 'threeFingerScrollSensitivity', 'showDebugLines', 'windowTitles', 'autoActivateWindow', 'detectionMode', 'console'].forEach(key => {
+        ['fps', 'quality', 'scrollSensitivity', 'threeFingerScrollSensitivity', 'showDebugLines', 'windowTitles', 'autoActivateWindow', 'detectionMode', 'console', 'lowResourceMode'].forEach(key => {
             if (newConfig[key] !== undefined && newConfig[key] !== null) {
                 if (key === 'windowTitles') globalUpdates.targetWindowTitles = newConfig[key];
                 else globalUpdates[key] = newConfig[key];

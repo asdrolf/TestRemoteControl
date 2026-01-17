@@ -1,4 +1,10 @@
 const { Jimp } = require('jimp');
+const configManager = require('./configManager');
+
+// Helper to get sample step based on low-resource mode
+function getLowResourceSampleStep(defaultStep) {
+    return configManager.isLowResourceMode() ? Math.max(15, defaultStep * 2) : defaultStep;
+}
 
 /**
  * Finds vertical edges (separators) by detecting horizontal color transitions.
@@ -13,7 +19,7 @@ function findVerticalEdges(image, options = {}) {
     const {
         minEdgeScore = 0.60,      // Minimum 60% of sampled points must show an edge
         edgeThreshold = 25,       // Minimum color difference to count as edge
-        sampleStep = 5,           // Sample every N pixels vertically
+        sampleStep = getLowResourceSampleStep(5),  // Adaptive based on mode
         marginX = 30,             // Skip pixels near edges
         marginY = 30              // Skip pixels near top/bottom
     } = options;
@@ -97,7 +103,7 @@ async function findChatPaneStructural(image, options = {}) {
     const edgeOptions = {
         minEdgeScore: 0.50,      // At least 50% of height shows edge
         edgeThreshold: 20,       // Color difference threshold
-        sampleStep: 8            // Sample every 8 pixels for speed
+        sampleStep: getLowResourceSampleStep(8)  // Adaptive based on mode
     };
 
     if (options.scanRegion) {
@@ -186,7 +192,7 @@ function findHorizontalEdges(image, options = {}) {
     const {
         minEdgeScore = 0.60,      // Minimum 60% of sampled points must show an edge
         edgeThreshold = 25,       // Minimum color difference to count as edge
-        sampleStep = 5,           // Sample every N pixels horizontally
+        sampleStep = getLowResourceSampleStep(5),  // Adaptive based on mode
         marginX = 30,             // Skip pixels near sides
         marginY = 30              // Skip pixels near top/bottom
     } = options;
@@ -256,7 +262,7 @@ async function findTerminalPane(image, options = {}) {
     const edgeOptions = {
         minEdgeScore: 0.50,
         edgeThreshold: 20,
-        sampleStep: 8
+        sampleStep: getLowResourceSampleStep(8)  // Adaptive based on mode
     };
 
     if (options.scanRegion) {

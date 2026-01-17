@@ -30,7 +30,7 @@ const SettingsPanel = ({ onOpenCropConfig }) => {
             scrollSensitivity: 1.0,
             threeFingerScrollSensitivity: 1.0,
             windowTitles: "Cursor|Antigravity|Windsurf",
-            detectionMode: 'dynamic', // 'dynamic' | 'fixed'
+            detectionMode: 'fixed', // 'dynamic' | 'fixed'
             showDebugLines: true,
             autoActivateWindow: true,
             console: {

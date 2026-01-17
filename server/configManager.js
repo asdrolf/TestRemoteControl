@@ -44,9 +44,16 @@ class ConfigManager {
                 // Detection settings
                 detectionInterval: 2000,
                 targetWindowTitles: "Cursor|Antigravity|Windsurf",
-                detectionMode: 'dynamic', // 'dynamic' | 'fixed'
+                detectionMode: 'fixed', // 'dynamic' | 'fixed'
                 showDebugLines: true,
                 autoActivateWindow: true,
+
+                // Low-resource mode settings
+                lowResourceMode: false,
+                lowResourceFps: 10,
+                lowResourceQuality: 20,
+                lowResourceDetectionInterval: 5000,
+                imageDownscale: 1.0,
 
                 // Console settings
                 console: {
@@ -234,6 +241,14 @@ class ConfigManager {
         }
         if (updates.autoActivateWindow !== undefined) {
             sanitized.autoActivateWindow = !!updates.autoActivateWindow;
+        }
+
+        // Low-resource mode settings
+        if (updates.lowResourceMode !== undefined) {
+            sanitized.lowResourceMode = !!updates.lowResourceMode;
+        }
+        if (updates.imageDownscale !== undefined) {
+            sanitized.imageDownscale = Math.max(0.25, Math.min(1.0, updates.imageDownscale));
         }
 
         // Console settings
@@ -427,11 +442,26 @@ class ConfigManager {
     getDefaultFps() { return this.config.global.fps; }
     getDefaultQuality() { return this.config.global.quality; }
     getDefaultScrollSensitivity() { return this.config.global.scrollSensitivity; }
-    getDetectionInterval() { return this.config.global.detectionInterval; }
+    getDetectionInterval() {
+        const global = this.config.global;
+        return global.lowResourceMode ? global.lowResourceDetectionInterval : global.detectionInterval;
+    }
     getTargetWindowTitles() { return this.config.global.targetWindowTitles; }
     getDefaultShowDebugLines() { return this.config.global.showDebugLines; }
     getDefaultAutoActivateWindow() { return this.config.global.autoActivateWindow; }
     getConsoleConfig() { return this.config.global.console; }
+
+    // Low-resource mode helpers
+    isLowResourceMode() { return !!this.config.global.lowResourceMode; }
+    getImageDownscale() { return this.config.global.imageDownscale || 1.0; }
+    getEffectiveFps() {
+        const global = this.config.global;
+        return global.lowResourceMode ? global.lowResourceFps : global.fps;
+    }
+    getEffectiveQuality() {
+        const global = this.config.global;
+        return global.lowResourceMode ? global.lowResourceQuality : global.quality;
+    }
 }
 
 module.exports = new ConfigManager();
