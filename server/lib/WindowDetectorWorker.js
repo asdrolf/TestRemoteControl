@@ -122,6 +122,11 @@ Write-Output "WORKER_READY"
      * @returns {Promise<{x: number, y: number, width: number, height: number} | null>}
      */
     findWindowBounds(titlePattern) {
+        // Validate titlePattern
+        if (!titlePattern || typeof titlePattern !== 'string') {
+            return Promise.resolve(null);
+        }
+
         // Check cache first
         const cacheKey = `title:${titlePattern}`;
         const cached = this.cache.get(cacheKey);
@@ -144,7 +149,7 @@ Write-Output "WORKER_READY"
 
             // Escape double quotes in pattern
             const escapedPattern = titlePattern.replace(/"/g, '`"');
-            this.proc.stdin.write(`Write-Output "${id}:$(Find-Window -Pattern '${escapedPattern}')"\n`);
+            this.proc.stdin.write(`Write-Output "${id}:$(Find-Window -Pattern '${escapedPattern}')"\\n`);
 
             // Timeout fallback
             setTimeout(() => {

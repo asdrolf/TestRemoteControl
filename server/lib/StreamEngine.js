@@ -300,7 +300,7 @@ class StreamEngine {
                         console.log(`[${state.socketId}] FIXED MODE: Chat zone locked at X=${state.stablePaneX}`);
                     }
                 }
-                if (state.calibrationMode && state.showDebugLines) {
+                if (state.calibrationMode && effectiveConfig.showDebugLines) {
                     const edges = findVerticalEdges(clientImage, { minEdgeScore: 0.50, edgeThreshold: 20, sampleStep: 8 });
                     drawDebugMarkers(clientImage, edges, state.stablePaneX > 0 ? state.stablePaneX : detectedX, false);
                 }
@@ -340,7 +340,7 @@ class StreamEngine {
                     }
                 }
 
-                if (state.calibrationMode && state.showDebugLines) {
+                if (state.calibrationMode && effectiveConfig.showDebugLines) {
                     const hEdges = findHorizontalEdges(clientImage, { minEdgeScore: 0.50, edgeThreshold: 20, sampleStep: 8 });
                     const selectedY = state.stablePaneY > 0 ? state.stablePaneY : detectedY;
                     const selectedH = state.stablePaneH > 0 ? state.stablePaneH : detectedH;
